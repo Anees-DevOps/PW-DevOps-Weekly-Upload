@@ -1,0 +1,7 @@
+GitHub setup - https://docs.google.com/document/d/1jq7eEKLSaLenN4cHKRQfXCjpx7LxOJvhuSzu7Oia3Ys/edit?tab=t.0
+
+live Demo Repo - https://github.com/Anees-DevOps/first-pw-repo-demo
+
+Subtrees Repo example - https://github.com/Anees-DevOps/git-subtrees-demo
+
+Submodules Repo example - https://github.com/Anees-DevOps/git-submodules-demo
