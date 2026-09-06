@@ -1,0 +1,11 @@
+# Python virtual environments and generated files
+myenv/
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+
+# Local secrets and editor files
+.env
+.env.*
+.vscode/
