@@ -1,0 +1,2 @@
+Jenkins setup - https://docs.google.com/document/d/1G_-iplmy5NGxqYIXzk4JFppYwMlN6oLJQzu-PzVbEO8/edit?tab=t.0#heading=h.92789beahil4
+Upstream & Downstream Job scripts - https://docs.google.com/document/d/1WL9PMs59GAgqym-vx6bzwfYh_ZujpiatxKRoL4OBBSw/edit?tab=t.0
