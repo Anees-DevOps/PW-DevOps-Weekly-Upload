@@ -1,0 +1,9 @@
+Jenkins Setup Guide - https://docs.google.com/document/d/1G_-iplmy5NGxqYIXzk4JFppYwMlN6oLJQzu-PzVbEO8/edit?tab=t.0#heading=h.92789beahil4
+
+Bug Hunt - https://github.com/Anees-DevOps/Bug_Hunt.git
+
+To-Do-List Assignment Repo - https://github.com/Anees-DevOps/To-Do-App.git
+
+Banking System Repo - https://github.com/Anees-DevOps/Banking-system-UnitTestDemo.git
+
+Jenkins Pipeline Demo's - https://github.com/Anees-DevOps/jenkins-devops-demo.git
