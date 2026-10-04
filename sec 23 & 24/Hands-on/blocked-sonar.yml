@@ -1,0 +1,56 @@
+name: CI with SonarQube (Blocking)
+
+
+on:
+ push:
+   branches: [ "main" ]
+
+
+jobs:
+ build-and-scan:
+   runs-on: ubuntu-latest
+
+
+   steps:
+     - name: Checkout source
+       uses: actions/checkout@v4
+
+
+     - name: Set up JDK 17
+       uses: actions/setup-java@v4
+       with:
+         distribution: "temurin"
+         java-version: 17
+
+
+     - name: Cache Sonar packages
+       uses: actions/cache@v4
+       with:
+         path: ~/.sonar/cache
+         key: ${{ runner.os }}-sonar
+         restore-keys: ${{ runner.os }}-sonar
+
+
+     - name: Run SonarQube Scan
+       uses: sonarsource/sonarqube-scan-action@v4
+       with:
+         args: >
+           -Dsonar.projectKey=my-project
+           -Dsonar.sources=.
+           -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
+       env:
+         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+
+     - name: SonarQube Quality Gate Check (blocking)
+       uses: sonarsource/sonarqube-quality-gate-action@v1
+       env:
+         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+
+     - name: Continue build only if passed
+       run: echo "SonarQube Quality Gate Passed!"
+
+
+     - Name: deploy the application
+       run: echo "Deploying the application..."

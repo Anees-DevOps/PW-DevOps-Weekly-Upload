@@ -1,0 +1,62 @@
+name: CI with SonarQube (Non-Blocking)
+
+
+on:
+ push:
+   branches: [ "main" ]
+
+
+jobs:
+ build-and-scan:
+   runs-on: ubuntu-latest
+
+
+   steps:
+     - name: Checkout source
+       uses: actions/checkout@v4
+
+
+     - name: Set up JDK 17
+       uses: actions/setup-java@v4
+       with:
+         distribution: "temurin"
+         java-version: 17
+
+
+     - name: Cache Sonar packages
+       uses: actions/cache@v4
+       with:
+         path: ~/.sonar/cache
+         key: ${{ runner.os }}-sonar
+         restore-keys: ${{ runner.os }}-sonar
+
+
+     - name: Run SonarQube Scan
+       id: scan
+       uses: sonarsource/sonarqube-scan-action@v4
+       with:
+         args: >
+           -Dsonar.projectKey=my-project
+           -Dsonar.sources=.
+           -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
+       env:
+         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+
+     - name: Check SonarQube Gate (non-blocking)
+       id: qualitygate
+       continue-on-error: true
+       uses: sonarsource/sonarqube-quality-gate-action@v1
+       env:
+         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+
+     - name: Notify DevOps about the scan result
+       run: |
+         echo "### SonarQube Scan Report" >> $GITHUB_STEP_SUMMARY
+         echo "Quality Gate Status: ${{ steps.qualitygate.outcome }}" >> $GITHUB_STEP_SUMMARY
+         echo "If FAILED, please review SonarQube dashboard." >> $GITHUB_STEP_SUMMARY
+
+
+     - name: Continue pipeline
+       run: echo "Proceeding with build/deploy despite Sonar issues."

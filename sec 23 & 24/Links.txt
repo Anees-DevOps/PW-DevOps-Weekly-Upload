@@ -1,0 +1,2 @@
+Jmeter & locust Setup - https://docs.google.com/document/d/1HiooQM6_MkNjf5VnqheDw_Mz5rgpC6Rshbo1Ml4g1Ww/edit?tab=t.0
+SonarQube setup - https://docs.google.com/document/d/1qqRu10w7Cuq3KdWKw1xyF8oHz4KNDziZp0PWNnnXFWg/edit?tab=t.0#heading=h.5jugem93trki
