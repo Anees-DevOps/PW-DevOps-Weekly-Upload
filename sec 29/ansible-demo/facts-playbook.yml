@@ -1,0 +1,13 @@
+- name: Show OS family
+  debug:
+    msg: "The OS family is {{ ansible_facts['os_family'] }}"
+
+- name: Configure web servers
+  hosts: web
+  gather_facts: no
+
+  tasks:
+    - name: Install package
+      apt:
+        name: "{{ package_name }}"
+        state: present

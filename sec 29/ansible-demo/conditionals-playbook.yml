@@ -1,0 +1,9 @@
+- name: install nginx only on debian-based systems.
+  hosts: web
+  gather_facts: yes
+  tasks:
+    - name: Install package
+      apt:
+        name: "{{ package_name }}"
+        state: present
+      when: ansible_facts['os_family'] == "Debian"

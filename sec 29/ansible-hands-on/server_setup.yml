@@ -1,0 +1,54 @@
+- name: Server setup with variables, facts and loops
+  hosts: all
+  become: true
+  gather_facts: true
+
+  vars:
+    tools:
+      - git
+      - curl
+      - vim
+      - htop
+      - tree
+    web_package: nginx
+
+
+  tasks:
+    - name: Display system architecture
+      debug:
+        msg: "System architecture is {{ ansible_facts['architecture'] }}"
+
+    - name: Install web server (debian family only)
+      apt:
+        name: "{{ web_package }}"
+        state: present
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: Install useful tools
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ tools }}"
+
+
+-------
+
+
+
+
+- name: install web service
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install web server
+      apt:
+        name: "{{ web_package }}"
+        state: present
+
+    - name: Print environment
+      debug:
+        msg: "Environment is {{ env }}"
+
+
+# ansible-playbook -i inventory.yml server_setup.yml

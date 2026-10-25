@@ -1,0 +1,23 @@
+- name: install several packages
+
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - htop
+    - git
+    - curl
+
+
+if loops are not used:
+  apt:
+    name: htop
+    state: present
+
+  apt:
+    name: git
+    state: present
+
+  apt:
+    name: curl
+    state: present
