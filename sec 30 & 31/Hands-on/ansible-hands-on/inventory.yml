@@ -1,0 +1,22 @@
+all:
+  hosts:
+    ubuntu-server:
+      ansible_host: 192.168.1.10
+
+[web]
+123.123.44.11
+
+[frontend]
+123.123.44.12
+
+[db]
+123.123.44.13
+
+----------------
+
+all:
+  children:
+    webservers: #group name
+      hosts:
+        ubuntu-server: #host name
+          ansible_host: 192.168.1.10

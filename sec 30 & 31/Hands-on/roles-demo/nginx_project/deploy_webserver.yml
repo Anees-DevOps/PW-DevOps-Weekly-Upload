@@ -1,0 +1,29 @@
+- name: Deploy nginx webserver using role
+  hosts: webservers
+  become: yes
+
+  roles:
+    - nginx_webserver
+    - packages
+    - apache_server
+    - db_maintenance
+
+- name: Demo of jinja2 loop redendering
+  hosts: webservers
+  vars:
+    site_title: "My cool datacenter"
+
+    servers:
+      - name: "MyAwesomeServer"
+        port: 80
+      - name: "MySecondServer"
+        port: 8080
+      - name: "MyThirdServer"
+        port: 443
+
+  tasks:
+    - name: Render index.html template
+      template:
+        src: index.html.j2
+        dest: /var/www/html/index.html
+

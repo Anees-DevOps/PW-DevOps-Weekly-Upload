@@ -1,0 +1,2 @@
+web_package: nginx
+welcome_msg: "Welcome to the server1 (custom override)!"

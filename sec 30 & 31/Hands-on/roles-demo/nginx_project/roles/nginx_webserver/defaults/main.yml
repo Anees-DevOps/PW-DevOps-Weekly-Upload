@@ -1,0 +1,3 @@
+# default values (lower priority) for nginx_webserver role
+server_name: DefaultServer
+server_port: 8080

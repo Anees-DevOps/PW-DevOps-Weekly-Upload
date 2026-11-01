@@ -1,0 +1,13 @@
+- name: Install and verify web service
+  hosts: all
+  become: true
+  tasks:
+    - name: Install web server
+      apt:
+        name: "{{ web_package }}"
+        state: present
+        update_cache: true
+
+    - name: Show welcome message
+      debug:
+        msg: "{{ welcome_msg }}"

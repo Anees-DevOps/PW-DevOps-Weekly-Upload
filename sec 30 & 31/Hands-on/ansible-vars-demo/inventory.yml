@@ -1,0 +1,6 @@
+all:
+  children:
+    webservers: group name
+      hosts:
+        server1: host name
+          ansible_host: 127.0.0.1

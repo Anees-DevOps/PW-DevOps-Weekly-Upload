@@ -1,0 +1,20 @@
+name: Deploy APP with Ansible
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ansible-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ansible
+        uses: ansible/ansible-galaxy-action@v3
+
+      - name: Run Ansible playbook
+        run: ansible-playbook -i inventory.ini nginx_project/deploy_webserver.yml --ask-vault-pass
+
+  

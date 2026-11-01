@@ -1,0 +1,13 @@
+- name: Backup Prometheus data
+  hosts: monitoring
+  become: true
+  tasks:
+    - name: Archive TSDB
+      shell: tar -czf /tmp/prometheus_backup_{{ ansible_date_time.date }}.tgz /var/lib/prometheus
+
+    - name: Upload to S3
+      aws_s3:
+        bucket: monitoring-backups
+        object: "prometheus/{{ inventory_hostname }}/backup_{{ ansible_date_time.date }}.tgz"
+        src: "/tmp/prometheus_backup_{{ ansible_date_time.date }}.tgz"
+        mode: put

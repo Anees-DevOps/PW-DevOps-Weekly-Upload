@@ -1,0 +1,12 @@
+<html>
+  <head><title>Server List for {{ site_title }}</title></head>
+  <body>
+    <h1>Welcome to {{ site_title }}!</h1>
+    <h2>Servers:</h2>
+    <ul>
+      {% for server in servers %}
+        <li>{{ server.name }} - {{ server.port }}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

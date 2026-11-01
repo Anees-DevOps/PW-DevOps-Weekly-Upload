@@ -1,0 +1,2 @@
+web_package: apache2
+welcome_msg: "Welcome to the web server!"
